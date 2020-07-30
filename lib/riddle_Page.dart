@@ -116,7 +116,7 @@ class _RiddlePageState extends State<RiddlePage> {
                   child: Text(
                     'Question No.${allList[questionIndex].qn}/7',
                     style: TextStyle(
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.deepOrange[100],
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 3,
@@ -219,6 +219,7 @@ class _RiddlePageState extends State<RiddlePage> {
                     Expanded(
                       // create a flatbutton
                       child: FlatButton(
+                        splashColor: Colors.green[900],
                         onPressed: () {
                           ansQ(allList[questionIndex].ans1);
                         },
@@ -248,6 +249,7 @@ class _RiddlePageState extends State<RiddlePage> {
                     Expanded(
                       // same as 1st answer button
                       child: FlatButton(
+                        splashColor: Colors.green[900],
                         onPressed: () {
                           ansQ(allList[questionIndex].ans2);
                         },
@@ -286,6 +288,7 @@ class _RiddlePageState extends State<RiddlePage> {
                     Expanded(
                       // same as 1st answer button
                       child: FlatButton(
+                        splashColor: Colors.green[900],
                         onPressed: () {
                           ansQ(allList[questionIndex].ans3);
                         },
