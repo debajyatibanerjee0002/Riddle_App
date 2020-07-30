@@ -5,12 +5,9 @@ A new Flutter project.
 ## Getting Started
 
 ## Screenshots
-<img height="60px" src="screenshots/quiz1.png"> 
-<img height="60px" src="screenshots/quiz2.png"> 
-<img height="60px" src="screenshots/quiz3.png"> 
-<img height="60px" src="screenshots/quiz4.png"> 
-<img height="60px" src="screenshots/quiz5.png">
-<img height="60px" src="screenshots/quiz6.png">
+<img height="100px" src="quiz1.mp4"> <img height="100px" src="quiz2.png"> 
+<img height="100px" src="quiz3.png"> <img height="100px" src="quiz4.png"> 
+<img height="100px" src="screenshots/quiz5.png"> <img height="100px" src="screenshots/quiz6.png">
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
