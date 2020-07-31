@@ -60,12 +60,18 @@ class _RiddlePageState extends State<RiddlePage> {
 
   // Image changer
   Widget imageLogic() {
-    if (correctAnsCount <= 3) {
+    if (correctAnsCount < 3) {
       return Image(
         image: AssetImage('assets/wrong.gif'),
       );
+    } else if (correctAnsCount >= 3 && correctAnsCount <= 5) {
+      return Image(
+        image: AssetImage('assets/ok.gif'),
+      );
     } else {
-      return Image(image: AssetImage('assets/correct.gif'));
+      return Image(
+        image: AssetImage('assets/correct.gif'),
+      );
     }
   }
 
