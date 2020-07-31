@@ -58,6 +58,17 @@ class _RiddlePageState extends State<RiddlePage> {
     }
   }
 
+  // Image changer
+  Widget imageLogic() {
+    if (correctAnsCount <= 3) {
+      return Image(
+        image: AssetImage('assets/wrong.gif'),
+      );
+    } else {
+      return Image(image: AssetImage('assets/correct.gif'));
+    }
+  }
+
   // create ansQ method to generate the logic
   void ansQ(String userPickedAns) {
     String correctAns = getQuestionAnswer();
@@ -78,7 +89,7 @@ class _RiddlePageState extends State<RiddlePage> {
         answer(newAns);
         // 2nd create Alrt to tell the user that he reach the end of the question
         Alert(
-          image: Image.asset('assets/correct.gif'),
+          image: imageLogic(),
           context: context,
           title: 'Finished!',
           desc: 'Your Score-$correctAnsCount/7',

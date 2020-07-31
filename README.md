@@ -11,7 +11,7 @@ Home Page
 <img height="400px" src="quiz3.png"><img height="400px" src="quiz4.png"><img height="400px" src="quiz5.png"> 
 Quiz Page
 
-<img height="400px" src="quiz6.png">
+<img height="400px" src="quiz6.png"><img height="400px" src="quiz7.png">
 End of the quiz
 
 This project is a starting point for a Flutter application.
