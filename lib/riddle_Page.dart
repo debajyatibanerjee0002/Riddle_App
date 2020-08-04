@@ -108,209 +108,169 @@ class _RiddlePageState extends State<RiddlePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // create the stack
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          // set the background image
-          Image.asset(
-            'assets/tree.jpg',
-            fit: BoxFit.cover,
-            color: Colors.black38,
-            colorBlendMode: BlendMode.darken,
-          ),
-
-          // create SingleChildScrollView
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
-                  // create text to count questions
-                  child: Text(
-                    'Question No.${allList[questionIndex].qn}/7',
-                    style: TextStyle(
-                      color: Colors.deepOrange[100],
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3,
-                    ),
-                  ),
-                ),
-                // add some padding
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                  // create a text to show question
-                  child: Text(
-                    allList[questionIndex].question,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green[200],
-                    ),
-                  ),
-                ),
-                // add some padding
-                Padding(
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  // create a row to show 2 images side by side
-                  child: Row(
-                    children: <Widget>[
-                      // create expanded widget
-                      Expanded(
-                        // create cliprrect to give radius
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          // set the image
-                          child: Image.asset(
-                            'assets/${allList[questionIndex].pic1}',
+    // willPopScope mean u can't go back at the middle of the question
+    return WillPopScope(
+      onWillPop: () {
+        return showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Oops!!'),
+                  content: Text('You can\'t go back at this stage'),
+                  actions: <Widget>[
+                    RaisedButton(
+                      elevation: 5,
+                      splashColor: Colors.blue[200],
+                      color: Colors.blue[400],
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Center(
+                        child: Text(
+                          'OK',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                      // add sizedbox widget
-                      SizedBox(
-                        width: 10,
-                      ),
-                      // same as 1st image
-                      Expanded(
-                        // same as 1st image
-                        child: ClipRRect(
-                          // same as 1st image
-                          borderRadius: BorderRadius.circular(20.0),
-                          // same as 1st image
-                          child: Image.asset(
-                            'assets/${allList[questionIndex].pic2}',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // give some padding
-                Padding(
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  // same as 1st row
-                  child: Row(
-                    children: <Widget>[
-                      // same as 1st image
-                      Expanded(
-                        child: ClipRRect(
-                          // same as 1st image
-                          borderRadius: BorderRadius.circular(20.0),
-                          // same as 1st image
-                          child: Image.asset(
-                            'assets/${allList[questionIndex].pic3}',
-                          ),
-                        ),
-                      ),
-                      // add sizedbox
-                      SizedBox(
-                        width: 10,
-                      ),
-                      // same as 1st image
-                      Expanded(
-                        // same as 1st image
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          // same as 1st image
-                          child: Image.asset(
-                            'assets/${allList[questionIndex].pic4}',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // add sizedbox
-                SizedBox(
-                  height: 10,
-                ),
-                // create a row for answer button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    // create a expanded widget
-                    Expanded(
-                      // create a flatbutton
-                      child: FlatButton(
-                        splashColor: Colors.green[900],
-                        onPressed: () {
-                          ansQ(allList[questionIndex].ans1);
-                        },
-                        // create a card and pass the answer
-                        child: Card(
-                          color: Colors.lightGreenAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          elevation: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Center(
-                              child: Text(
-                                '${allList[questionIndex].ans1}',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    // same as 1st answer button
-                    Expanded(
-                      // same as 1st answer button
-                      child: FlatButton(
-                        splashColor: Colors.green[900],
-                        onPressed: () {
-                          ansQ(allList[questionIndex].ans2);
-                        },
-                        // same as 1st answer button
-                        child: Card(
-                          color: Colors.lightGreenAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          elevation: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Center(
-                              child: Text(
-                                '${allList[questionIndex].ans2}',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    )
                   ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // create a row for 3rd answer button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // same as 1st answer button
-                    Expanded(
-                      // same as 1st answer button
-                      child: FlatButton(
-                        splashColor: Colors.green[900],
-                        onPressed: () {
-                          ansQ(allList[questionIndex].ans3);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                ));
+      },
+      child: Scaffold(
+        // create the stack
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            // set the background image
+            Image.asset(
+              'assets/tree.jpg',
+              fit: BoxFit.cover,
+              color: Colors.black38,
+              colorBlendMode: BlendMode.darken,
+            ),
+
+            // create SingleChildScrollView
+            SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
+                    // create text to count questions
+                    child: Text(
+                      'Question No.${allList[questionIndex].qn}/7',
+                      style: TextStyle(
+                        color: Colors.deepOrange[100],
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3,
+                      ),
+                    ),
+                  ),
+                  // add some padding
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                    // create a text to show question
+                    child: Text(
+                      allList[questionIndex].question,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green[200],
+                      ),
+                    ),
+                  ),
+                  // add some padding
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    // create a row to show 2 images side by side
+                    child: Row(
+                      children: <Widget>[
+                        // create expanded widget
+                        Expanded(
+                          // create cliprrect to give radius
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            // set the image
+                            child: Image.asset(
+                              'assets/${allList[questionIndex].pic1}',
+                            ),
+                          ),
+                        ),
+                        // add sizedbox widget
+                        SizedBox(
+                          width: 10,
+                        ),
+                        // same as 1st image
+                        Expanded(
+                          // same as 1st image
+                          child: ClipRRect(
+                            // same as 1st image
+                            borderRadius: BorderRadius.circular(20.0),
+                            // same as 1st image
+                            child: Image.asset(
+                              'assets/${allList[questionIndex].pic2}',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // give some padding
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    // same as 1st row
+                    child: Row(
+                      children: <Widget>[
+                        // same as 1st image
+                        Expanded(
+                          child: ClipRRect(
+                            // same as 1st image
+                            borderRadius: BorderRadius.circular(20.0),
+                            // same as 1st image
+                            child: Image.asset(
+                              'assets/${allList[questionIndex].pic3}',
+                            ),
+                          ),
+                        ),
+                        // add sizedbox
+                        SizedBox(
+                          width: 10,
+                        ),
+                        // same as 1st image
+                        Expanded(
+                          // same as 1st image
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            // same as 1st image
+                            child: Image.asset(
+                              'assets/${allList[questionIndex].pic4}',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // add sizedbox
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // create a row for answer button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      // create a expanded widget
+                      Expanded(
+                        // create a flatbutton
+                        child: FlatButton(
+                          splashColor: Colors.green[900],
+                          onPressed: () {
+                            ansQ(allList[questionIndex].ans1);
+                          },
+                          // create a card and pass the answer
                           child: Card(
                             color: Colors.lightGreenAccent,
                             shape: RoundedRectangleBorder(
@@ -321,7 +281,7 @@ class _RiddlePageState extends State<RiddlePage> {
                               padding: const EdgeInsets.all(15.0),
                               child: Center(
                                 child: Text(
-                                  '${allList[questionIndex].ans3}',
+                                  '${allList[questionIndex].ans1}',
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -332,13 +292,84 @@ class _RiddlePageState extends State<RiddlePage> {
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      // same as 1st answer button
+                      Expanded(
+                        // same as 1st answer button
+                        child: FlatButton(
+                          splashColor: Colors.green[900],
+                          onPressed: () {
+                            ansQ(allList[questionIndex].ans2);
+                          },
+                          // same as 1st answer button
+                          child: Card(
+                            color: Colors.lightGreenAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            elevation: 3,
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Center(
+                                child: Text(
+                                  '${allList[questionIndex].ans2}',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // create a row for 3rd answer button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // same as 1st answer button
+                      Expanded(
+                        // same as 1st answer button
+                        child: FlatButton(
+                          splashColor: Colors.green[900],
+                          onPressed: () {
+                            ansQ(allList[questionIndex].ans3);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              color: Colors.lightGreenAccent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              elevation: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Center(
+                                  child: Text(
+                                    '${allList[questionIndex].ans3}',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
